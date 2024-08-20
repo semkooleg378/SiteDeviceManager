@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BLE Device Manager</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#317EFB">
 </head>
 <body>
     <h1>BLE Device Manager</h1>
@@ -14,5 +16,12 @@
         <ul id="control-list"></ul>
     </div>
     <script src="app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then(reg => console.log('Service worker registered:', reg))
+                .catch(err => console.error('Service worker registration failed:', err));
+        }
+    </script>
 </body>
 </html>
