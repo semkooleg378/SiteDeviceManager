@@ -1,6 +1,34 @@
 const SERVICE_UUID = '0000abcd-0000-1000-8000-00805f9b34fb';
 const PUBLIC_CHAR_UUID = '00001234-0000-1000-8000-00805f9b34fb';
 
+// Manage the installation prompt
+let deferredPrompt: any;
+const addBtn = document.createElement('button');
+addBtn.textContent = 'Install App';
+addBtn.style.display = 'none';
+document.body.appendChild(addBtn);
+
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    addBtn.style.display = 'block';
+
+    addBtn.addEventListener('click', (e) => {
+        addBtn.style.display = 'none';
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult: any) => {
+            if (choiceResult.outcome === 'accepted') {
+                console.log('User accepted the A2HS prompt');
+            } else {
+                console.log('User dismissed the A2HS prompt');
+            }
+            deferredPrompt = null;
+        });
+    });
+});
+///////////////////////
+
+
 interface MessageBase {
     type: string;
     sourceAddress: string;
