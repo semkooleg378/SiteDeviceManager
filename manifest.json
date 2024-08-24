@@ -2,7 +2,7 @@
   "name": "BLE Device Manager",
   "short_name": "BLE Manager",
   "description": "Manage and control your BLE devices.",
-  "start_url": "/",
+  "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#317EFB",
